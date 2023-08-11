@@ -16,7 +16,7 @@ CONTAINER_NAME=${1:-nanolab22}
 # Check if the nanolab storage pool exists
 if ! lxc storage list | grep -q "nanolab"; then
     # Create dedicated nanolab storage in btrfs (required for docker)
-ubu1    lxc storage create nanolab btrfs size=50GB
+    lxc storage create nanolab btrfs size=50GB
 fi
 
 # Launch the container using the nanolab storage pool
