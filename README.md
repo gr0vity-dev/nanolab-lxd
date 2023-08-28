@@ -65,6 +65,29 @@ _Replace `[container-name]` with the desired name for your LXD container. If you
 
 Once the script completes its execution, you'll have a fully functional NanoLab environment within an LXD container, ready for testing!
 
+## Running a testcase from host inside lxd container
+```bash
+./run-lab-lxd list #shows all available testcases
+
+./run-lab-lxd run -t flamegraph_bintree -i "nanocurrency/nano:V26.0DB13"
+```
+
+## Using local docker builds inside lxd container
+- build the nano-docker image :
+`docker build -f docker/node/Dockerfile  -t your_nano_image .`
+
+```bash
+./mv_docker_to_lxd.sh your_nano_image
+
+./run-lab-lxd run -t flamegraph_bintree -i "your_nano_image"
+```
+
+
+## Copy over flamegraphs from lxc to host
+```bash
+lxc file pull nanolab22/root/$(lxc exec nanolab22 ls | grep flame) .
+``` 
+
 ## Conclusion
 
 Harness the power of NanoLab within an LXD container with the `nanolab-lxd` project. This setup streamlines the process of setting up a local test environment, ensuring reproducibility and isolation.
