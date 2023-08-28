@@ -85,7 +85,7 @@ Once the script completes its execution, you'll have a fully functional NanoLab 
 
 ## Copy over flamegraphs from lxc to host
 ```bash
-lxc file pull nanolab22/root/$(lxc exec nanolab22 ls | grep flame) .
+lxc exec nanolab22 -- ls | grep flame | xargs -I{} lxc file pull nanolab22/root/{} .
 ``` 
 
 ## Conclusion
