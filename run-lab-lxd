@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Parse the arguments provided to the script.
+# You might want to add more error checks or handling for additional/missing parameters.
+
+# Default container name
+CONTAINER="nanolab22"
+
+# Pass all arguments to the Docker command inside the LXD container
+lxc exec $CONTAINER -- nanolab "$@" --gh-path flamegraph?ref=flamegraph
