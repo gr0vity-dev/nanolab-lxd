@@ -2,7 +2,8 @@
 
 NanoLab-LXD encapsulates the functionalities of NanoLab into an LXD container, offering a lightweight and efficient environment for running test cases against local networks of nano-nodes.
 
-[NanoLab](https://github.com/link-to-nanolab-repo-if-any) is an easy-to-use testing tool designed to run test cases against a local network of nano-nodes. The `nanolab-lxd` project takes the power of NanoLab and packages it within an LXD container for enhanced isolation and scalability.
+[NanoLab](https://github.com/gr0vity-dev/nanolab) is an easy-to-use testing tool designed to run test cases against a local network of nano-nodes.
+The `nanolab-lxd` project takes the power of NanoLab and packages it within an LXD container for enhanced isolation and ease of use.
 
 This README will guide you on setting up NanoLab within an LXD container.
 
@@ -64,6 +65,30 @@ _Replace `[container-name]` with the desired name for your LXD container. If you
 6. Installs NanoLab via pip3.
 
 Once the script completes its execution, you'll have a fully functional NanoLab environment within an LXD container, ready for testing!
+
+## Running a testcase from host inside lxd container
+```bash
+./run-lab-lxd list #shows all available testcases
+
+./run-lab-lxd run -t flamegraph_bintree -i "nanocurrency/nano:V26.0DB13"
+```
+
+## Using local docker builds inside lxd container
+- build the nano-docker image :
+`docker build -f docker/node/Dockerfile  -t your_nano_image .`
+
+```bash
+./mv_docker_to_lxd.sh your_nano_image
+
+./run-lab-lxd run -t flamegraph_bintree -i "your_nano_image"
+```
+
+
+## Copy over flamegraphs from lxc to host
+```bash
+./pull_flamegraphs.sh --rm
+``` 
+The --rm   flag is optional and removes the flamgraphs from teh lxd container after pulling them 
 
 ## Conclusion
 
