@@ -2,7 +2,8 @@
 
 NanoLab-LXD encapsulates the functionalities of NanoLab into an LXD container, offering a lightweight and efficient environment for running test cases against local networks of nano-nodes.
 
-[NanoLab](https://github.com/link-to-nanolab-repo-if-any) is an easy-to-use testing tool designed to run test cases against a local network of nano-nodes. The `nanolab-lxd` project takes the power of NanoLab and packages it within an LXD container for enhanced isolation and scalability.
+[NanoLab](https://github.com/gr0vity-dev/nanolab) is an easy-to-use testing tool designed to run test cases against a local network of nano-nodes.
+The `nanolab-lxd` project takes the power of NanoLab and packages it within an LXD container for enhanced isolation and ease of use.
 
 This README will guide you on setting up NanoLab within an LXD container.
 
@@ -85,8 +86,9 @@ Once the script completes its execution, you'll have a fully functional NanoLab 
 
 ## Copy over flamegraphs from lxc to host
 ```bash
-lxc exec nanolab22 -- ls | grep flame | xargs -I{} lxc file pull nanolab22/root/{} .
+./pull_flamegraphs.sh --rm
 ``` 
+The --rm   flag is optional and removes the flamgraphs from teh lxd container after pulling them 
 
 ## Conclusion
 
